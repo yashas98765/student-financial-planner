@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE = 'http://localhost:5001/api';
+const API_BASE = process.env.REACT_APP_API_BASE || '/api';
 
 // Add request interceptor to ensure token is included
 axios.interceptors.request.use(

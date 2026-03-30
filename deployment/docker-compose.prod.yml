@@ -1,0 +1,36 @@
+services:
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    volumes:
+      - mongo_data:/data/db
+
+  backend:
+    build:
+      context: ..
+      dockerfile: deployment/backend.Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - mongo
+    env_file:
+      - ../backend/.env
+    environment:
+      NODE_ENV: production
+      PORT: 5001
+      MONGODB_URI: ${MONGODB_URI:-mongodb://mongo:27017/student_financial_planner}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost}
+    ports:
+      - "5001:5001"
+
+  frontend:
+    build:
+      context: ..
+      dockerfile: deployment/frontend.Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+
+volumes:
+  mongo_data:
