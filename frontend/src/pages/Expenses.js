@@ -336,12 +336,12 @@ const Expenses = () => {
     },
   });
 
-  // Fetch expense statistics
-  const { data: statsData } = useQuery({
-    queryKey: ['expense-stats'],
-    queryFn: () => expensesAPI.getExpenseStats({ period: 'month' }),
-    select: (data) => data.data,
-  });
+  // Fetch expense statistics (commented out - not currently used in UI)
+  // const { data: statsData } = useQuery({
+  //   queryKey: ['expense-stats'],
+  //   queryFn: () => expensesAPI.getExpenseStats({ period: 'month' }),
+  //   select: (data) => data.data,
+  // });
 
   // Generate chart data from real expenses
   const generateChartData = (expenses) => {

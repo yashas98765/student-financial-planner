@@ -12,7 +12,7 @@ import {
   Eye,
   RefreshCw
 } from 'lucide-react';
-import { expensesAPI, goalsAPI, reportsAPI } from '../services/api';
+import { expensesAPI, goalsAPI } from '../services/api';
 import { useAuth } from '../contexts/AuthContext';
 import Card from '../components/UI/Card';
 import Button from '../components/UI/Button';
